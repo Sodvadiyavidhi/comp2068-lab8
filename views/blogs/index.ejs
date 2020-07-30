@@ -1,0 +1,42 @@
+<%- include ('../partials/header') %>
+
+<div class="container my-5">
+  <header>
+    <h1>Archive</h1>
+  </header>
+  <hr>
+  <div class="content">
+    <% for (let blog of blogs) { %>
+      <div class="card my-3">
+        <div class="card-header clearfix">
+          <h5 class="card-title float-left"><%= blog.title %></h5>
+          <div class="float-right">
+            <small><%= blog.updatedAt %></small>
+          </div>
+        </div>
+
+        <div class="card-body">          
+          <p class="card-text">
+            <%= blog.synopsis %>
+          </p>
+          <a href="/blogs/<%= blog.id %>">more...</a>
+        </div>
+
+        <div class="card-footer">
+          <a href="/blogs/<%= blog.id %>/edit">
+            <i class="fa fa-edit"></i>
+          </a>
+          &nbsp;/&nbsp;
+          <form class="form-inline" action="/blogs/delete" method="post" onsubmit="return confirm('Are you sure you want to delete all your hard work?');">
+            <input type="hidden" value="<%= blog.id %>" name="id">
+            <button class="delete" type="submit">
+              <i class="fa fa-trash"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    <% } %>
+  </div>
+</div>
+
+<%- include ('../partials/footer') %>
