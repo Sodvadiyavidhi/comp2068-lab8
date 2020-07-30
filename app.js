@@ -54,16 +54,24 @@ app.use('/', (req, res, next) => {
 
 // Our routes
 const routes = require('./routes.js');
-app.use('/api', routes);
-
-app.get('/test', (req, res) => {
-  res.status(200).json({message: 'Hello World'});
+app.use(`/`, routes);
+const clientRoot = path.join(__dirname, '/client/build');
+app.use((req, res, next) => {
+   if (req.method === 'GET' && req.accepts('html') && !req.is('json') &&
+    !req.patj.includes('.')){
+      res.sendFile('index.html', {clientRoot});
+    } else next();
 });
+// app.use('/api', routes);
 
-app.use(express.static(path.join(__dirname, 'client/build')));
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname+'/client/build/index.html'));
-});
+// app.get('/test', (req, res) => {
+//   res.status(200).json({message: 'Hello World'});
+// });
+
+// app.use(express.static(path.join(__dirname, 'client/build')));
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname+'/client/build/index.html'));
+// });
 // Start our server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 app.listen(port, () => console.log(`Listening on port ${port}`));

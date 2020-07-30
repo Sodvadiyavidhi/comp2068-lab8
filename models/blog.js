@@ -41,29 +41,3 @@ BlogSchema.virtual('synopsis')
 
 module.exports = mongoose.model('Blog', BlogSchema);
 
-
-
-<!-- <form action="/superheroes", method="POST">
-      <div class="form-group">
-        <label for="name">Superhero Name</label>
-        <input type="text" name="name" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <label for="power">Powers</label>
-        <input type="text" name="power" class="form-control"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="year">Release Year</label>
-        <input type="number" name="year" class="form-control"></textarea>
-      </div>
-      <div class="form-group">
-        <label for="actor">Actor</label>
-        <input type="text" name="Actor" class="form-control">
-      </div>
-
-      <div class="form-group">
-        <button class="btn btn-dark">Submit</button>
-      </div>
-    </form> -->
